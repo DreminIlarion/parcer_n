@@ -1,0 +1,181 @@
+{% extends "project/base.html" %}
+{% load static %}
+{% block title %}Недвижимость{% endblock title %}
+
+
+{% block next-content %}
+
+<style>
+  row.{
+    bs-gutter-x: 0rem;
+  }
+
+</style>
+
+<body>
+   
+
+<div class="container-fluid">
+
+  
+
+  <div class="row" style=''>
+    <div class="sidebar border border-right col-md-1 col-lg-2 p-0 bg-body-tertiary">
+      <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-1 text-center">
+          <h4 class='text-center'>Фильтры</h4>
+          <ul class="nav flex-column">
+            
+
+            <form class="row nav flex-column "   method='GET' action='/register'>
+
+              <div class="form-row d-flex align-items-center nav flex-column text-start ">
+
+                  <div class="form-group col-10">
+                      <div class="input-group">
+                          <input class="form-control py-2 border-right-0 border" type="search" name="title_forall" placeholder="Название содержит...">
+                          <span class="input-group-text" id="inputGroupPrepend2">
+                              <i class="fa fa-search"></i>
+                          </span>
+                      </div>
+                  </div>
+              
+          
+              
+          
+                <div class="flex-column col-10  mt-2 ">
+                  <label for="validationDefault01" class="form-label">Мин цена</label>
+                  <input type="number" min=0 class="form-control" id="validationDefault01" name="min_price" >
+                </div>
+          
+                <div class=" flex-column col-10 mt-2  ">
+                  <label for="validationDefault02" class="form-label ">Макс цена</label>
+                  <input type="number" min=0 class="form-control" id="validationDefault02" name="max_price" >
+                </div>
+          
+             
+             
+          
+                <div class=" flex-column col-10 mt-2  " >
+                  <label for="validationDefaultUsername" class="form-label text-nowrap">Мин дата публикации</label>
+                  <div class="input-group">
+                    <input type="date" class="form-control" id="validationDefaultUsername" name="min_date">
+                  </div>
+                </div>
+          
+                <div class=" flex-column col-10 mt-2  ">
+                    <label for="validationDefault02" class="form-label text-nowrap">Макс дата публикации</label>
+                    <input type="date" class="form-control" id="validationDefault02" name="max_date">
+                </div>
+          
+              
+          
+              
+                <div class=" flex-column col-10 mt-2  ">
+                  <label for="validationDefault04" class="form-label g-0" >Выбрать источник</label>
+                  <select class="form-select" id="validationDefault04" name="category" >
+                    <option>Все</option>
+                    <option value="avito">Авито</option>
+                    <option value="cian">Циан</option>
+                    <option value="sova">Сова</option>
+                  </select>
+                </div>
+          
+                <div class=" flex-column col-10 mt-2">
+                  <label for="validationDefault04" class="form-label" >Выбрать назначение</label>
+                  <select class="form-select" id="validationDefault04" name="appointment" >
+                    <option  placeholder="Название содержит...">Все</option>
+                    <option value="zemelnye_uchastki" >Сельхоз</option>
+                    <option>МЖС</option>
+                    <option>Промназначение</option>
+                    <option value="commercial" >Коммерческое</option>
+                  </select>
+                </div>
+              
+            
+          
+          
+              <div class="form-row nav flex-column col-10  mt-3 ">
+                <button class="btn btn-primary" ction="project/nedv.html" type="submit">Поиск</button>
+              </div>
+              
+            </div>
+              {% csrf_token %}
+              
+            </form>
+          
+          
+        </div>
+      </div>
+    </div>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      
+      <a class="btn btn-dark" href="{% url 'export-xls' %}" role="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-download" viewBox="0 0 16 16">
+          <path d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383"/>
+          <path d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708z"/>
+        </svg> 
+      </a>
+      <b>- Скачать данные (.xls)</b>
+
+      <div class="bd-example border border-2" style='margin-top:10px'>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover table-sm">
+            <thead class="table-dark text-center">
+              <tr>
+                {% comment %} <th><input class="form-check-input" type="checkbox" value="" id="select_all"></th> {% endcomment %}
+                <th scope="col">#</th>
+                <th scope="col">Источник</th>
+                <th scope="col">Текст объявления</th>
+                <th scope="col" class='text-nowrap'>Цена(₽/сотку)</th>
+                <th scope="col">Площадь(соток)</th>
+                <th scope="col">Адрес</th>
+                <th scope="col">Дата публикации</th>
+                <th scope="col">url</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+                {% for dates in page_obj %}
+                <tr href='#'>
+                    {% comment %} <td>  <input class="form-check-input" type="checkbox" value="" id="all_ch" name='additional'></td> {% endcomment %}
+                    <th scope="row">{{dates.pk}}</th>
+    
+                    <td>{{dates.category}} {% if 'avito' in dates.category %} <svg width="22" height="22" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10.595" cy="5.225" r="3.325" fill="#965EEB"></circle><circle cx="22.245" cy="7.235" r="7.235" fill="#0AF"></circle><circle cx="8.9" cy="18.6" r="8.9" fill="#04E061"></circle><circle cx="24.325" cy="21.005" r="5.375" fill="#FF4053"></circle></svg> {% elif 'cian' in dates.category  %} <img width="22" height="22" src="https://companieslogo.com/img/orig/CIAN-74737c7e.png?t=1635954420" alt=""> {% else %}   <img width="22" height="22" src="https://sun9-29.userapi.com/impg/8oGF3AK7pWDwyiVzidZb5Ijfr4umKq00WJ3Jfg/b128wnEnSAo.jpg?size=956x955&quality=95&sign=87d1aa6a21f257210f10b306c8430700&type=album https://sun9-29.userapi.com/impg/8oGF3AK7pWDwyiVzidZb5Ijfr4umKq00WJ3Jfg/b128wnEnSAo.jpg?size=956x955&quality=95&sign=87d1aa6a21f257210f10b306c8430700&type=album" alt=""> {% endif %} </td>
+    
+                    <td><a href=" {% url "obyav" dates.pk %} " class='text-nowrap ccilka2'>{{dates.information}}</a></td>
+                    <td><div class='text-nowrap text-end'>{{dates.price}}</div></td>
+                    <td><div class='text-nowrap text-end'>{{dates.area}}</div></td>
+                    <td><div class='text-nowrap'>{{dates.address}}</div></td>
+                    <td><div class='text-nowrap'>{{dates.datas|date:'Y-m-d'}}</div></td>
+                    <td><a class='ccilka' href ={{dates.url}}><div class='text-nowrap'>{{dates.url}}</div></a></td>
+                  
+                  </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+{% include "project/paginator.html" %} 
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+  
+</body>
+
+
+{% endblock next-content %}
+

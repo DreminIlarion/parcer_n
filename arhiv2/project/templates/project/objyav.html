@@ -1,0 +1,176 @@
+{% extends "project/base.html" %}
+{% load static %}
+{% block title %}Недвижимость{% endblock title %}
+
+
+{% block next-content %}
+
+<div class="container text-center ">
+  <div class="row">
+    <div class="col">
+      <a href="{{request.META.HTTP_REFERER}}" class="btn btn-dark">Назад</a>
+    </div>
+
+    <div class="col">
+      <a href="{% url "register" %}" class="btn btn-dark">Главная</a>
+    </div>
+
+  </div>
+</div>
+<div class="col">
+    
+
+    <div class="pos-1">
+      
+        <table class="table ms-3 caption-top">
+            <tbody>
+              <caption><p class="h3">{{obyav.description}}</p>  </caption>
+              <tr>
+                <td colspan="2">Адрес</td>
+                <td>{{obyav.address}}</td>
+              </tr>
+              <tr>
+                <td colspan="2">Кадастровый номер</td>
+                <td>{{obyav.cadastral_number}}</td>
+              </tr>
+              <tr>
+                <td colspan="2">Зона городского планирования</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table ms-3 caption-top">
+            <tbody>
+              <caption><p class="h3">Характеристики объекта</p>  </caption>
+              <tr>
+                <td colspan="2">Площадь участка</td>
+                <td>{{obyav.area}} соток</td>
+              </tr>
+              <tr>
+                <td colspan="2">Цена(₽/сотку)</td>
+                <td>{{obyav.price}} ₽</td>
+              </tr>
+              <tr>
+                <td colspan="2">ВРИ</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table ms-3 caption-top">
+            <tbody>
+              <caption><p class="h3">Дополнительно</p>  </caption>
+              <tr>
+                <td colspan="2">Источник</td>
+                {% if 'avito' in obyav.url %}
+                    <td>Авито</td>
+                {% elif 'cian' in obyav.url %}
+                    <td>Циан</td>
+                {% else %}
+                    <td>Сова</td>
+                {% endif %}
+              </tr>
+              <tr>
+                <td colspan="2">Дата публикации</td>
+                <td>{{obyav.datas|date:'Y-m-d'}}</td>
+              </tr>
+              <tr>
+                <td colspan="2">url</td>
+                <td><a class="link-offset-2 link-underline link-underline-opacity-0" href="{{obyav.url}}">{{obyav.url}} </a></td>
+              </tr>
+            </tbody>
+          </table>
+
+
+    </div>
+</div>
+
+
+<div class="col">
+    <div class="pos-2">
+        <h1>Фото объявления</h1>
+        <div id="carouselExample" class="carousel slide carousel-dark ">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              
+              <a href="{{obyav.photo}}"><img src="{{obyav.photo}}" class="d-block photki rounded mx-auto d-block"></a>
+              {% comment %} <img src="{{obyav.photo}}" id="image" style="display:none;" class="d-block photki rounded mx-auto d-block">
+              <img src=" {{obyav.photo}} " class="d-block photki rounded mx-auto d-block" alt="..."> {% endcomment %}
+            </div>
+            <div class="carousel-item">
+              <img src="{% static "project/media/number-2.jpg" %}" class="d-block photki rounded mx-auto d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="https://pizzarezept.ru/wp-content/uploads/2023/06/sa-15.jpg" class="d-block photki rounded mx-auto d-block" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <p>
+          <button class="btn btn-secondary mt-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Дополнительная информация
+          </button>
+        </p>
+        <div class="collapse " id="collapseExample">
+          <div class='d-flex  mt-3 '>
+            <div class="me-5"><h2>Похожие объявления</h2></div>
+          </div>
+          <div style='width:800px' class="overflow-x-auto ">
+            
+            <table  class="  table table-bordered table-sm    ">
+              <thead class="table-dark">
+                  <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Источник</th>
+                  <th scope="col">Текст объявления</th>
+                  <th scope="col" class='text-nowrap'>Цена(₽/сотку)</th>
+                  <th scope="col">Площадь(соток)</th>
+                  <th scope="col">Адрес</th>
+                  <th scope="col">Дата публикации</th>
+                  <th scope="col">url</th>
+                  </tr>
+              </thead>
+      
+              <tbody>
+                  {% for dates in pohojee %}
+                  <tr href='#'>
+                      <th scope="row">{{dates.id}}</th>
+                      
+                      <td>{{dates.category}}</td>
+                      
+                      <td><a href=" {% url "obyav" dates.pk %} " class='text-nowrap ccilka2'>{{dates.information}}</a></td>
+                      <td><div class='text-nowrap text-end'>{{dates.price}}</div></td>
+                      <td><div class='text-nowrap text-end'>{{dates.area}}</div></td>
+                      <td><div class='text-nowrap'>{{dates.address}}</div></td>
+                      <td><div class='text-nowrap'>{{dates.datas|date:'Y-m-d'}}</div></td>
+                      <td><a class='ccilka' href ={{dates.url}}><div class='text-nowrap'>{{dates.url}}</div></a></td>
+                      
+                      </tr>
+                  {% endfor %}
+              </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+
+        
+    </div>
+
+
+    
+
+</div>
+
+
+
+{% endblock next-content %}
+

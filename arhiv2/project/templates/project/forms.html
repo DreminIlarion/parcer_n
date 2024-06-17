@@ -1,0 +1,84 @@
+<div class="dropdown-center text-center ">
+
+    <button type="button" class="btn btn-primary dropdown-toggle  " data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+      Фильтры
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+      </svg> 
+    </button>
+
+{% comment %}data-bs-theme="dark"{% endcomment %}
+  <form class="row dropdown-menu col-md-6 border border-3 rounded-2 "   method='GET' action='/nedv'>
+
+    <div class="form-row">
+        <div class="form-group col-12">
+            <div class="input-group">
+                <input class="form-control py-2 border-right-0 border" type="search" name="title_forall" placeholder="Title contains...">
+                <span class="input-group-text" id="inputGroupPrepend2">
+                    <i class="fa fa-search"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class='row'>
+
+      <div class="form-row col-5">
+        <label for="validationDefault01" class="form-label">Мин цена</label>
+        <input type="number" min=0 class="form-control" id="validationDefault01" name="min_price" >
+      </div>
+
+      <div class="form-row col-5">
+        <label for="validationDefault02" class="form-label ">Макс цена</label>
+        <input type="number" min=0 class="form-control" id="validationDefault02" name="max_price" >
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="form-row col-5" >
+        <label for="validationDefaultUsername" class="form-label text-nowrap">Мин дата публикации</label>
+        <div class="input-group">
+          <input type="date" class="form-control" id="validationDefaultUsername" name="min_date">
+        </div>
+      </div>
+
+      <div class="form-row col-5">
+          <label for="validationDefault02" class="form-label text-nowrap">Макс дата публикации</label>
+          <input type="date" class="form-control" id="validationDefault02" name="max_date">
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="form-row col-5">
+        <label for="validationDefault04" class="form-label" >Выбрать источник</label>
+        <select class="form-select" id="validationDefault04" name="category" >
+          <option>Все</option>
+          <option>avito</option>
+          <option>cian</option>
+        </select>
+      </div>
+
+      <div class="form-row col-5">
+        <label for="validationDefault04" class="form-label" >Выбрать назначение</label>
+        <select class="form-select" id="validationDefault04" name="appointment" >
+          <option>Все</option>
+          <option>zemelnye_uchastki</option>
+          <option>МЖС</option>
+          <option>Промназначение</option>
+          <option>commercial</option>
+        </select>
+      </div>
+  </div>
+
+
+    <div class="form-row col-12 mt-3">
+      <button class="btn btn-primary" ction="project/nedv.html" type="submit">Поиск</button>
+    </div>
+
+    {% csrf_token %}
+    
+  </form>
+</div>  
