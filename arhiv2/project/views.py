@@ -13,6 +13,9 @@ def base(request):
 def home(request):
     return render(request,'project/home.html')
 
+def new(request):
+    return render(request,'project/new.html')
+
 def is_valid_q(param):
     return param != '' and param is not None
 

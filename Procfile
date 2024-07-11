@@ -1,0 +1,1 @@
+web: gunicorn arhiv2.wsgi --log-file -

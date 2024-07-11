@@ -16,5 +16,7 @@ urlpatterns = [
     path('export-xls', export_to_exel, name = 'export-xls'),
 
     path('register', views.register, name='register'),
+
+    path('new', views.new, name = 'new'),
 ]
 
