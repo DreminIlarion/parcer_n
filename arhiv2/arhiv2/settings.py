@@ -160,5 +160,3 @@ USE_THOUSAND_SEPARATOR = True
 # INTERNAL_IPS = ["127.0.0.1"]
 
 
-if not DEBUG:
-   CSRF_TRUSTED_ORIGINS = ['https://charming-surprise-production-c34d.up.railway.app/']
