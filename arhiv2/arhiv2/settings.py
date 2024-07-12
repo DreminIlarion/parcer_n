@@ -145,7 +145,7 @@ STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 
 
-STATICFILES_DIRS= [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT= os.path.join(BASE_DIR, 'static_root')
 MEDIA_DIRS= os.path.join(BASE_DIR, 'media_root')
 # Default primary key field type
@@ -158,3 +158,7 @@ USE_THOUSAND_SEPARATOR = True
 
 # для работы с  дэбагом 
 # INTERNAL_IPS = ["127.0.0.1"]
+
+
+if not DEBUG:
+   CSRF_TRUSTED_ORIGINS = ['https://charming-surprise-production-c34d.up.railway.app/']
